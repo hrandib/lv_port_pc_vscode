@@ -21,7 +21,7 @@
  *====================*/
 
 /*Color depth: 1 (1 byte per pixel), 8 (RGB332), 16 (RGB565), 32 (ARGB8888)*/
-#define LV_COLOR_DEPTH     32
+#define LV_COLOR_DEPTH     1
 
 /*Swap the 2 bytes of RGB565 color. Useful if the display has a 8 bit interface (e.g. SPI)*/
 #define LV_COLOR_16_SWAP   0
@@ -155,13 +155,13 @@ e.g. "stm32f769xx.h" or "stm32f429xx.h"*/
 
 /*Enable/disable LV_LOG_TRACE in modules that produces a huge number of logs*/
 #  define LV_LOG_TRACE_MEM            1
-#  define LV_LOG_TRACE_TIMER          1
-#  define LV_LOG_TRACE_INDEV          1
-#  define LV_LOG_TRACE_DISP_REFR      1
-#  define LV_LOG_TRACE_EVENT          1
-#  define LV_LOG_TRACE_OBJ_CREATE     1
-#  define LV_LOG_TRACE_LAYOUT         1
-#  define LV_LOG_TRACE_ANIM           1
+#  define LV_LOG_TRACE_TIMER          0
+#  define LV_LOG_TRACE_INDEV          0
+#  define LV_LOG_TRACE_DISP_REFR      0
+#  define LV_LOG_TRACE_EVENT          0
+#  define LV_LOG_TRACE_OBJ_CREATE     0
+#  define LV_LOG_TRACE_LAYOUT         0
+#  define LV_LOG_TRACE_ANIM           0
 
 #endif  /*LV_USE_LOG*/
 
@@ -186,11 +186,11 @@ e.g. "stm32f769xx.h" or "stm32f429xx.h"*/
  *-----------*/
 
 /*1: Show CPU usage and FPS count in the right bottom corner*/
-#define LV_USE_PERF_MONITOR     1
+#define LV_USE_PERF_MONITOR     0
 
 /*1: Show the used memory and the memory fragmentation  in the left bottom corner
  * Requires LV_MEM_CUSTOM = 0*/
-#define LV_USE_MEM_MONITOR      1
+#define LV_USE_MEM_MONITOR      0
 
 /*1: Draw random colored rectangles over the redrawn areas*/
 #define LV_USE_REFR_DEBUG       0
@@ -503,7 +503,7 @@ e.g. "stm32f769xx.h" or "stm32f429xx.h"*/
 *==================*/
 
 /*Enable the examples to be built with the library*/
-#define LV_BUILD_EXAMPLES   1
+#define LV_BUILD_EXAMPLES   0
 
 /*--END OF LV_CONF_H--*/
 

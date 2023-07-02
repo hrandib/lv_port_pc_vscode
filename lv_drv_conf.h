@@ -87,11 +87,11 @@
 #endif
 
 #if USE_MONITOR
-#  define MONITOR_HOR_RES     800
-#  define MONITOR_VER_RES     600
+#  define MONITOR_HOR_RES     220
+#  define MONITOR_VER_RES     60
 
 /* Scale window by this factor (useful when simulating small screens) */
-#  define MONITOR_ZOOM        1
+#  define MONITOR_ZOOM        4
 
 /* Used to test true double buffering with only address changing.
  * Use 2 draw buffers, bith with MONITOR_HOR_RES x MONITOR_VER_RES size*/
