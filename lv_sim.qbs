@@ -45,7 +45,7 @@ Project {
                 "--gc-sections",
             ]
 
-            cpp.positionIndependentCode: false
+            cpp.positionIndependentCode: true
             cpp.enableExceptions: false
             cpp.enableRtti: false
 
@@ -69,8 +69,7 @@ Project {
         Depends { name: "config" }
         Depends { name: "lvgl" }
 
-        consoleApplication: false
-        // cpp.executableSuffix: ".elf"
+        consoleApplication: true
 
         cpp.dynamicLibraries: ["m", "SDL2"]
 

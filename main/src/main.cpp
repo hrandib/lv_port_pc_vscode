@@ -15,6 +15,8 @@
 #include "lv_drivers/display/monitor.h"
 #include "lv_drivers/indev/keyboard.h"
 #include "lvgl.h"
+#include "monofonts.h"
+#include "ui.h"
 #include <SDL2/SDL.h>
 
 /*********************
@@ -63,14 +65,6 @@ static int tick_thread(void* data);
  *   GLOBAL FUNCTIONS
  **********************/
 
-static inline void createLabel()
-{
-    lv_obj_t* label1 = lv_label_create(lv_scr_act());
-    lv_obj_set_align(label1, LV_TEXT_ALIGN_CENTER); /*Center aligned lines*/
-    lv_label_set_text(label1, "ABCD");
-    lv_obj_set_align(label1, LV_ALIGN_CENTER);
-}
-
 int main(int argc, char** argv)
 {
     (void)argc; /*Unused*/
@@ -82,7 +76,7 @@ int main(int argc, char** argv)
     /*Initialize the HAL (display, input devices, tick) for LVGL*/
     hal_init();
 
-    createLabel();
+    ui_init();
 
     while(1) {
         /* Periodically call the lv_task handler.
@@ -129,25 +123,11 @@ static void hal_init(void)
 
     lv_disp_t* disp = lv_disp_drv_register(&disp_drv);
 
-    // lv_theme_t * th = lv_theme_default_init(disp,
-    // lv_palette_main(LV_PALETTE_BLUE), lv_palette_main(LV_PALETTE_RED),
-    // LV_THEME_DEFAULT_DARK, LV_FONT_DEFAULT);
-    lv_theme_t* th = lv_theme_mono_init(disp, true, &lv_font_unscii_8);
+    lv_theme_t* th = lv_theme_mono_init(disp, false, &lv_font_font5x7);
     lv_disp_set_theme(disp, th);
 
     lv_group_t* g = lv_group_create();
     lv_group_set_default(g);
-
-    // /* Add the mouse as input device
-    //  * Use the 'mouse' driver which reads the PC's mouse*/
-    // mouse_init();
-    // static lv_indev_drv_t indev_drv_1;
-    // lv_indev_drv_init(&indev_drv_1); /*Basic initialization*/
-    // indev_drv_1.type = LV_INDEV_TYPE_POINTER;
-
-    // /*This function will be called periodically (by the library) to get the
-    // mouse position and state*/ indev_drv_1.read_cb = mouse_read; lv_indev_t
-    // *mouse_indev = lv_indev_drv_register(&indev_drv_1);
 
     keyboard_init();
     static lv_indev_drv_t indev_drv_2;
@@ -156,21 +136,6 @@ static void hal_init(void)
     indev_drv_2.read_cb = keyboard_read;
     lv_indev_t* kb_indev = lv_indev_drv_register(&indev_drv_2);
     lv_indev_set_group(kb_indev, g);
-    // mousewheel_init();
-    // static lv_indev_drv_t indev_drv_3;
-    // lv_indev_drv_init(&indev_drv_3); /*Basic initialization*/
-    // indev_drv_3.type = LV_INDEV_TYPE_ENCODER;
-    // indev_drv_3.read_cb = mousewheel_read;
-
-    // lv_indev_t * enc_indev = lv_indev_drv_register(&indev_drv_3);
-    // lv_indev_set_group(enc_indev, g);
-
-    /*Set a cursor for the mouse*/
-    // LV_IMG_DECLARE(mouse_cursor_icon); /*Declare the image file.*/
-    // lv_obj_t * cursor_obj = lv_img_create(lv_scr_act()); /*Create an image
-    // object for the cursor */ lv_img_set_src(cursor_obj, &mouse_cursor_icon);
-    // /*Set the image source*/ lv_indev_set_cursor(mouse_indev, cursor_obj);
-    // /*Connect the image  object to the driver*/
 }
 
 /**
